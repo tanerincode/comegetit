@@ -1,3 +1,13 @@
+# how to run 
+
+```shell
+npm i
+```
+
+```shell
+serverless offline
+```
+
 ### TODO LIST
 
 1. [x] serverless configuration
