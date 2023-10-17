@@ -37,6 +37,10 @@ const serverlessConfiguration: AWS = {
         },
         environment: {
             STAGE: STAGE,
+            DB_HOST: "trumpet.db.elephantsql.com",
+            DB_USERNAME:"gxjscode",
+            DB_PASSWORD: "PE0hpdN3aTKmfwfiup6T67meLwIF5WpK",
+            DB_NAME: "gxjscode"
         },
     },
     functions: functions,

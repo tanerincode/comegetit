@@ -4,6 +4,8 @@
     "paths": {
       "@functions/*": ["src/functions/*"],
       "@utils/*" : ["src/utils/*"],
+      "@database/*" : ["src/database/*"],
+      "@entities/*" : ["src/database/entities/*"],
     }
   },
 }
