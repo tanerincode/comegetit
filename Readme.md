@@ -18,7 +18,7 @@ serverless offline
 6. [ ] JWT integration
 7. [ ] user CRUDS API
    1. [ ] profile
-   2. [ ] create
+   2. [x] create
    3. [ ] update
    4. [ ] delete
    5. [ ] add balance
