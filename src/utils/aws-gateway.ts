@@ -1,6 +1,5 @@
-import {APIGatewayProxyEvent, APIGatewayProxyResult, Handler} from "aws-lambda";
-import {FromSchema, JSONSchema7} from "json-schema-to-ts";
-
+import type {APIGatewayProxyEvent, APIGatewayProxyResult, Handler} from "aws-lambda"
+import type {FromSchema, JSONSchema7} from 'json-schema-to-ts';
 
 type ValidatedAPIGatewayProxyEvent<S extends JSONSchema7> =
     Omit<APIGatewayProxyEvent, 'body'>

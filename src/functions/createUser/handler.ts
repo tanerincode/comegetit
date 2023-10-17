@@ -4,24 +4,26 @@ import {ApplicationDataSource} from "@utils/data-source";
 import {User} from "@entities/User";
 import * as console from "console";
 import * as crypto from "crypto";
-import {APIGatewayProxyHandler} from "aws-lambda";
+import {ValidatedEventAPIGatewayProxyEvent} from "@utils/aws-gateway";
+import schema from "@functions/createUser/schema";
 
 let dataSource: DataSource;
 
-const createUser: APIGatewayProxyHandler = async (event) => {
+const createUser: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
     if ( !dataSource ){
         dataSource = await ApplicationDataSource.initialize();
     }
 
-    const eventPayload = JSON.parse(event.body);
+    // @ts-ignore
+    const {name, email, password} = JSON.parse(event.body);
 
     try {
        const user = await dataSource.transaction(async transactionManager => {
             const user = transactionManager.getRepository(User).create();
             user.id = crypto.randomUUID()
-            user.name = eventPayload.name;
-            user.email = eventPayload.email;
-            user.password = eventPayload.password;
+            user.name = name;
+            user.email = email;
+            user.password = password;
             user.created_at = new Date();
             user.updated_at = null;
 
