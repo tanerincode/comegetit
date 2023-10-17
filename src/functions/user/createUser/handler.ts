@@ -5,7 +5,7 @@ import {User} from "@entities/User";
 import * as console from "console";
 import * as crypto from "crypto";
 import {ValidatedEventAPIGatewayProxyEvent} from "@utils/aws-gateway";
-import schema from "@functions/createUser/schema";
+import schema from "@functions/user/createUser/schema";
 
 let dataSource: DataSource;
 

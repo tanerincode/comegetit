@@ -1,5 +1,5 @@
 import {handlerPath} from "@utils/handler-resolver";
-import schema from "@functions/createUser/schema";
+import schema from "@functions/user/createUser/schema";
 
 export default {
     handler: `${handlerPath(__dirname)}/handler.app`,
