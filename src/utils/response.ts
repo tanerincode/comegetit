@@ -10,6 +10,16 @@ export const handleSuccessResult = (response: Record<string, unknown>) => {
     }
 }
 
+export const handleBadRequestResult = (response: Record<string, unknown>) => {
+    return {
+        statusCode: 400,
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': true,
+        },
+        body: JSON.stringify(response)
+    }
+}
 
 export const handleErrorResult = (response: Record<string, unknown>) => {
     return {

@@ -1,5 +1,5 @@
 import {APIGatewayEvent, APIGatewayProxyHandler} from "aws-lambda";
-import {handleErrorResult, handleSuccessResult} from "@utils/response";
+import {handleBadRequestResult, handleSuccessResult} from "@utils/response";
 
 const pingHandler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
     const {who} = event.pathParameters;
@@ -9,8 +9,7 @@ const pingHandler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
         });
     }
 
-
-    return handleErrorResult({
+    return handleBadRequestResult({
         "message": "Who are you mother f??"
     })
 }

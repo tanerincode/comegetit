@@ -13,8 +13,8 @@ serverless offline
 1. [x] serverless configuration
 2. [x] serverless offline - like an api
 3. [x] first api function
-4. [ ] typeorm configuration
-5. [ ] Postgresql integration
+4. [x] typeorm configuration
+5. [x] Postgresql integration
 6. [ ] JWT integration
 7. [ ] user CRUDS API
    1. [ ] profile
