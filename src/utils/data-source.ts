@@ -5,6 +5,7 @@ import {migrations} from "@database/migrations";
 import {subscribers} from "@database/subscribers";
 // import * as Process from "process";
 
+export const POSTGRES_UNIQUE_ERROR_CODE = "23505";
 
 export const ApplicationDataSource = new DataSource({
     type: "postgres",
@@ -17,4 +18,4 @@ export const ApplicationDataSource = new DataSource({
     entities:entities,
     migrations: migrations,
     subscribers: subscribers
-})
+});
