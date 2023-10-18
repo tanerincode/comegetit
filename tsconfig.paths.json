@@ -6,6 +6,8 @@
       "@utils/*" : ["src/utils/*"],
       "@database/*" : ["src/database/*"],
       "@entities/*" : ["src/database/entities/*"],
+      "@AppTypes/*" : ["src/types/*"],
+      "@exceptions/*" : ["src/exceptions/*"]
     }
   },
 }

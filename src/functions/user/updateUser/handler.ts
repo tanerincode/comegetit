@@ -1,16 +1,17 @@
-import {handleBadRequestResult, handleErrorResult, handleSuccessResult} from "@utils/response";
+import {handleErrorResult, handleSuccessResult} from "@utils/response";
 import {DataSource} from "typeorm";
-import {ApplicationDataSource, POSTGRES_UNIQUE_ERROR_CODE} from "@utils/data-source";
+import {ApplicationDataSource} from "@utils/data-source";
 import {User} from "@entities/User";
 import {ValidatedEventAPIGatewayProxyEvent} from "@utils/aws-gateway";
-import schema from "@functions/user/createUser/schema";
+import schema from "@functions/user/updateUser/schema";
 import {prepareUserForResponse, UserDTO} from "@AppTypes/UserTypes";
 import * as console from "console";
-import * as crypto from "crypto";
 
 let dataSource: DataSource;
 
-const createUser: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
+const updateUser: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
+
+    const userId = event.pathParameters.id;
     if ( !dataSource ){
         dataSource = await ApplicationDataSource.initialize();
     }
@@ -20,30 +21,30 @@ const createUser: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (eve
 
     try {
        const user = await dataSource.transaction(async transactionManager => {
-            const user = transactionManager.getRepository(User).create();
-            user.id = crypto.randomUUID()
+           const user = await transactionManager.getRepository(User).findOne({
+               where: {
+                   id: userId
+               },
+               lock: {
+                   mode: "pessimistic_read"
+               }
+           });
+
+           if( !user ) throw new Error("User not found!");
+
             user.name = payload.name;
-            user.email = payload.email;
             user.password = payload.password;
-            user.created_at = new Date();
-            user.updated_at = null;
+            user.updated_at = new Date();
 
             await transactionManager.save(user);
             return user;
         });
 
         return handleSuccessResult({
-            message: "user is created!",
+            message: "user is updated!",
             data: await prepareUserForResponse(user)
         })
     }catch (err) {
-
-        if ( err.code === POSTGRES_UNIQUE_ERROR_CODE ){
-            return handleBadRequestResult({
-                message: "This email already taken!"
-            })
-        }
-
         console.log(`An error occurred while user create : ${err.message}`);
         return handleErrorResult({
             message: "something went wrong!"
@@ -51,4 +52,4 @@ const createUser: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (eve
     }
 }
 
-export const app = createUser;
+export const app = updateUser;

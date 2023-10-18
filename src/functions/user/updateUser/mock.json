@@ -1,0 +1,10 @@
+{
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "name": "Taner",
+    "email": "taner@gmail.com",
+    "password": "test-password"
+  }
+}

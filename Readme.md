@@ -17,10 +17,10 @@ serverless offline
 5. [x] Postgresql integration
 6. [ ] JWT integration
 7. [ ] user CRUDS API
-   1. [ ] profile
+   1. [x] profile
    2. [x] create
-   3. [ ] update
-   4. [ ] delete
+   3. [x] update
+   4. [x] delete
    5. [ ] add balance
    6. [ ] reviews
 8. [ ] create restaurant API
