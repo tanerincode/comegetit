@@ -1,5 +1,7 @@
 import {UserNotFoundException} from "@exceptions/UserNotFoundException";
 import {handleGenericResults} from "@utils/response";
+import {UserBalanceNotEnoughException} from "@exceptions/UserBalanceNotEnoughException";
+import {StatusCodes} from "http-status-codes";
 
 export const errorHandler = (error: Error) => {
     let responseMessage = "Internal Server Error";
@@ -13,6 +15,10 @@ export const errorHandler = (error: Error) => {
         case UserNotFoundException:
             result.message = error.message;
             result.statusCode = 404;
+            break;
+        case UserBalanceNotEnoughException:
+            result.message = error.message;
+            result.statusCode = StatusCodes.NOT_ACCEPTABLE;
             break;
         default:
             result.message = "Something went wrong. Please try again later.";

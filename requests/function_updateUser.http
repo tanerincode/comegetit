@@ -1,0 +1,8 @@
+POST {{baseURL}}users/e4c82a32-d9e5-4f3d-825d-4d4b303c657e
+Content-Type: application/json
+
+{
+"name": "Test 12345",
+"email": "taner123@gmail.com",
+"password": "123"
+}

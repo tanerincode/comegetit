@@ -1,4 +1,13 @@
-import {Column, CreateDateColumn, Entity, Index, PrimaryGeneratedColumn, UpdateDateColumn} from "typeorm"
+import {
+    Column,
+    CreateDateColumn,
+    Entity,
+    Index,
+    OneToOne,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn
+} from "typeorm"
+import {UserBalance} from "@entities/UserBalance";
 
 @Entity('users')
 export class User {
@@ -19,4 +28,7 @@ export class User {
     public created_at: Date;
     @UpdateDateColumn({type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)"})
     public updated_at: Date
+
+    @OneToOne(() => UserBalance, (userBalance) => userBalance.users, {onDelete: "CASCADE"})
+    userBalance: UserBalance
 }

@@ -1,8 +1,8 @@
 import "reflect-metadata";
 import {DataSource} from "typeorm";
 import {entities} from "@entities/index";
-import {migrations} from "@database/migrations";
-import {subscribers} from "@database/subscribers";
+import {migrations} from "@migrations/index";
+import {subscribers} from "@subscribers/index";
 // import * as Process from "process";
 
 export const POSTGRES_UNIQUE_ERROR_CODE = "23505";

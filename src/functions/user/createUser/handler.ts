@@ -10,7 +10,7 @@ import * as crypto from "crypto";
 
 let dataSource: DataSource;
 
-const createUser: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
+const createUserHandler: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
     if ( !dataSource ){
         dataSource = await ApplicationDataSource.initialize();
     }
@@ -35,7 +35,7 @@ const createUser: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (eve
         return handleSuccessResult({
             message: "user is created!",
             data: await prepareUserForResponse(user)
-        })
+        });
     }catch (err) {
 
         if ( err.code === POSTGRES_UNIQUE_ERROR_CODE ){
@@ -51,4 +51,4 @@ const createUser: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (eve
     }
 }
 
-export const app = createUser;
+export const app = createUserHandler;

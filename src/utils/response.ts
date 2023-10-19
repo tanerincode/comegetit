@@ -24,7 +24,7 @@ export const handleBadRequestResult = (response: Record<string, unknown>) => {
 
 export const handleErrorResult = (response: Record<string, unknown>) => {
     return {
-        statusCode: response.statusCode ?? 500,
+        statusCode: Number(response.statusCode) ?? 500,
         headers: {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Credentials': true,

@@ -1,0 +1,6 @@
+PATCH {{baseURL}}users/29e46b35-f729-4cbb-bc09-e96cff2fa71b/consume-balance
+Content-Type: application/json
+
+{
+  "cost": 0.3
+}

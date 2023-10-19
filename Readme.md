@@ -21,17 +21,10 @@ serverless offline
    2. [x] create
    3. [x] update
    4. [x] delete
-   5. [ ] add balance
-   6. [ ] reviews
-8. [ ] create restaurant API
-9. [ ] get restaurant list API
-10. [ ] get restaurants nearby
-11. [ ] get restaurant products
-12. [ ] order product
-13. [ ] mark delivered
-14. [ ] add balance to user
-15. [ ] transfer balance to restaurant
-16. [ ] restaurant CRUDS API
+   5. [x] add balance
+   6. [x] consume balance
+   7. [ ] reviews
+8. [ ] restaurant CRUDS API
     1. [ ] profile
     2. [ ] update
     3. [ ] transfer balance to bank
@@ -39,6 +32,14 @@ serverless offline
     5. [ ] update product
     6. [ ] change product price
     7. [ ] mark restaurant as busy/available
+9. [ ] create restaurant API
+10. [ ] get restaurant list API
+11. [ ] get restaurants nearby
+12. [ ] get restaurant products
+13. [ ] order product
+14. [ ] mark delivered
+15. [ ] add balance to user
+16. [ ] transfer balance to restaurant
 17. Campaign CRUDS API
     1. [ ] create campaign
     2. [ ] active campaign

@@ -1,1 +1,5 @@
-export const subscribers = []
+import {AddBalanceDataAfterCreateUserSubscriber} from "@subscribers/AddBalanceDataAfterCreateUserSubscriber";
+
+export const subscribers = [
+    AddBalanceDataAfterCreateUserSubscriber
+]
