@@ -4,10 +4,12 @@
     "paths": {
       "@functions/*": ["src/functions/*"],
       "@utils/*" : ["src/utils/*"],
-      "@database/*" : ["src/database/*"],
-      "@entities/*" : ["src/database/entities/*"],
       "@AppTypes/*" : ["src/types/*"],
-      "@exceptions/*" : ["src/exceptions/*"]
+      "@database/*" : ["src/database/*"],
+      "@exceptions/*" : ["src/exceptions/*"],
+      "@migrations/*": ["src/database/migrations/*"],
+      "@subscribers/*": ["src/database/subscribers/*"],
+      "@entities/*" : ["src/database/entities/*"]
     }
   },
 }

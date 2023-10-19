@@ -6,6 +6,7 @@ import {User} from "@entities/User";
 import {prepareUserForResponse} from "@AppTypes/UserTypes";
 import {UserNotFoundException} from "@exceptions/UserNotFoundException";
 import {errorHandler} from "@utils/handleExceptions";
+import * as console from "console";
 
 let dataSource: DataSource;
 const getUserHandler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
@@ -20,6 +21,9 @@ const getUserHandler: APIGatewayProxyHandler = async (event: APIGatewayEvent) =>
         const user = await userRepository.findOne({
             where: {
                 id: userId
+            },
+            relations: {
+                userBalance: true
             }
         });
 
@@ -32,6 +36,7 @@ const getUserHandler: APIGatewayProxyHandler = async (event: APIGatewayEvent) =>
             data: await prepareUserForResponse(user)
         });
     }catch (err) {
+        console.log(err)
         return errorHandler(err)
     }
 }
