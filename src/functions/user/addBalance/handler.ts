@@ -31,7 +31,7 @@ const addUserBalance: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async 
                 where: { id: userId },
                 relations: { userBalance: true }
             });
-
+            
             if ( !user ){
                 throw new UserNotFoundException();
             }
@@ -40,7 +40,7 @@ const addUserBalance: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async 
                 where : {
                     user_id: userId
                 },
-                lock: { mode: "pessimistic_write" }
+                lock: { mode: "pessimistic_read" }
             });
 
             userBalance.balance += balance;

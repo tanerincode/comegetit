@@ -1,7 +1,7 @@
 export default {
     type: "object",
     properties: {
-        cost: {type: "integer"}
+        name: {type: "string"},
     },
-    required: ["cost"]
+    required: ["name"]
 } as const;

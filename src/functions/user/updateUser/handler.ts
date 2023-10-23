@@ -4,7 +4,7 @@ import {ApplicationDataSource} from "@utils/data-source";
 import {User} from "@entities/User";
 import {ValidatedEventAPIGatewayProxyEvent} from "@utils/aws-gateway";
 import schema from "@functions/user/updateUser/schema";
-import {prepareUserForResponse, UserDTO} from "@AppTypes/UserTypes";
+import {prepareUserForResponse} from "@AppTypes/UserTypes";
 import * as console from "console";
 
 let dataSource: DataSource;
@@ -17,7 +17,8 @@ const updateUser: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (eve
     }
 
     // @ts-ignore
-    const payload:UserDTO = JSON.parse(event.body);
+    const payload = JSON.parse(event.body);
+    const keys = Object.keys(schema.properties);
 
     try {
        const user = await dataSource.transaction(async transactionManager => {
@@ -32,9 +33,14 @@ const updateUser: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (eve
 
            if( !user ) throw new Error("User not found!");
 
-            user.name = payload.name;
-            user.password = payload.password;
-            user.updated_at = new Date();
+           for ( const key of keys ){
+               if ( payload.hasOwnProperty(key) ){
+                   switch (key) {
+                       default:
+                           user[key] = payload[key];
+                   }
+               }
+           }
 
             await transactionManager.save(user);
             return user;
